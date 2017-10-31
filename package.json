@@ -1,15 +1,10 @@
 {
   "name": "@fand/kao",
-  "version": "1.0.0",
   "description": "CLI kaomoji searcher",
-  "main": "index.js",
+  "version": "0.0.0",
+  "author": "Takayosi Amagi <fand.gmork@gmail.com>",
   "bin": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "MIT",
+  "bugs": "https://github.com/fand/kao/issues",
   "dependencies": {
     "clipboardy": "^1.1.4",
     "fuse.js": "^3.2.0",
@@ -20,5 +15,13 @@
     "pad": "^2.0.1",
     "pify": "^3.0.0",
     "string-width": "^2.1.1"
+  },
+  "homepage": "https://github.com/fand/kao",
+  "keywords": ["kaomoji", "CLI"],
+  "license": "MIT",
+  "main": "index.js",
+  "repository": "https://github.com/fand/kao",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
   }
 }
