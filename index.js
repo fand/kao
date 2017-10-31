@@ -86,7 +86,7 @@ p(fs.readFile)(path.resolve(__dirname, 'emoticon.txt'), 'utf8')
       message: 'type keyword...',
       pageSize: 30,
       source: (_, input) => {
-        return Promise.resolve(fuse.search(input || ''));
+        return Promise.resolve(fuse.search(input || ' '));
       },
     }]);
   })
