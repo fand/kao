@@ -4,9 +4,13 @@ const path = require('path');
 const p = require('pify');
 const jp = require('japanese');
 const spawn = require('child_process').spawn;
+const clipboardy = require('clipboardy');
+const Fuse = require('fuse.js');
 const width = require('string-width');
 const pad = require('pad');
-const clipboardy = require('clipboardy');
+
+const inquirer = require('inquirer');
+inquirer.registerPrompt('autocomplete', require('inquirer-autocomplete-prompt'));
 
 const configs = ['wikipedia', 'traditional hepburn', 'modified hepburn', 'kunrei', 'nihon'];
 
@@ -36,22 +40,31 @@ p(fs.readFile)(path.resolve(__dirname, 'emoticon.txt'), 'utf8')
       return [kaomoji, name, names];
     }).filter(x => x);
 
-    kaomojiWidth = Math.min(40);
-    nameWidth = Math.min(10);
+    kaomojiWidth = Math.min(kaomojiWidth, 30);
+    nameWidth = Math.min(nameWidth, 10);
 
-    const candidates = kaomojis.map(([k, j, r]) => `${pad(k, kaomojiWidth)}\t${pad(j, nameWidth)}\t${r}`);
-
-    return new Promise(resolve => {
-      const p = spawn('peco', { stdio: 'pipe' });
-      p.stdin.setEncoding('utf-8');
-      p.stdout.setEncoding('utf-8');
-      p.stdout.on('data', resolve);
-      p.stdin.write(candidates.join('\n'));
+    const fuse = new Fuse(kaomojis.map(k => ({
+      kaomoji: `${pad(k[0], kaomojiWidth)}\t${pad(k[1], nameWidth)}\t${k[2]}`,
+      japaneseName: k[1],
+      romanName: k[2],
+    })), {
+      keys: ['japaneseName', 'romanName'],
+      id: 'kaomoji',
     });
+
+    return inquirer.prompt([{
+      type: 'autocomplete',
+      name: 'kaomoji',
+      message: 'type keyword...',
+      pageSize: 30,
+      source: (_, input) => {
+        return Promise.resolve(fuse.search(input || ''));
+      },
+    }]);
   })
-  .then(data => {
-    const kao = data.replace(/\t.*/, '').trim();
-    clipboardy.writeSync(kao);
-    console.log(`>> Moved '${kao}' to clipboard!`);
+  .then(({ kaomoji }) => {
+    kaomoji = kaomoji.replace(/\t.*/, '').trim();
+    clipboardy.writeSync(kaomoji);
+    console.log(`>> Copied '${kaomoji}' to clipboard!`);
   })
   .catch(console.error);
