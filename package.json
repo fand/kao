@@ -1,6 +1,6 @@
 {
   "name": "@fand/kao",
-  "description": "CLI kaomoji searcher",
+  "description": "CLI kaomoji searcher ٩(ˊᗜˋ*)و",
   "version": "0.0.0",
   "author": "Takayosi Amagi <fand.gmork@gmail.com>",
   "bin": "index.js",
@@ -12,12 +12,16 @@
     "inquirer": "^3.3.0",
     "inquirer-autocomplete-prompt": "^0.11.1",
     "japanese": "^1.2.0",
+    "meow": "^3.7.0",
     "pad": "^2.0.1",
     "pify": "^3.0.0",
     "string-width": "^2.1.1"
   },
   "homepage": "https://github.com/fand/kao",
-  "keywords": ["kaomoji", "CLI"],
+  "keywords": [
+    "kaomoji",
+    "CLI"
+  ],
   "license": "MIT",
   "main": "index.js",
   "repository": "https://github.com/fand/kao",

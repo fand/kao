@@ -9,6 +9,34 @@ const Fuse = require('fuse.js');
 const width = require('string-width');
 const pad = require('pad');
 
+const meow = require('meow');
+const foo = require('.');
+
+const cli = meow(`
+  Usage
+    $ kao
+
+    1. Hit 'kao'
+    2. Search your kaomoji & hit enter
+    3. The kaomoji is in your clipboard! ヽ(•̀﹏•́ )ゝ✧
+
+  See https://github.com/fand/kao for details ヾ(๑╹◡╹)ﾉ"
+
+`, {
+  flags: {
+    help: { type: 'boolean', alias: 'h' },
+    version: { type: 'boolean', alias: 'v' },
+  },
+});
+
+if (cli.flags.h) {
+  cli.showHelp();
+}
+if (cli.flags.v) {
+  console.log(cli.pkg.version);
+  process.exit();
+}
+
 const inquirer = require('inquirer');
 inquirer.registerPrompt('autocomplete', require('inquirer-autocomplete-prompt'));
 
