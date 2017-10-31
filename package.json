@@ -1,0 +1,25 @@
+{
+  "name": "@fand/kao",
+  "version": "1.0.0",
+  "description": "CLI kaomoji searcher",
+  "main": "index.js",
+  "bin": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "cli-truncate": "^1.1.0",
+    "clipboardy": "^1.1.4",
+    "fuse.js": "^3.2.0",
+    "got": "^7.1.0",
+    "japanese": "^1.2.0",
+    "pad": "^2.0.1",
+    "pify": "^3.0.0",
+    "string-length": "^2.0.0",
+    "string-width": "^2.1.1",
+    "wide-align": "^1.1.2"
+  }
+}
