@@ -1,7 +1,7 @@
 {
   "name": "@fand/kao",
   "description": "CLI kaomoji searcher ٩(ˊᗜˋ*)و",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "author": "Takayosi Amagi <fand.gmork@gmail.com>",
   "bin": "index.js",
   "bugs": "https://github.com/fand/kao/issues",
